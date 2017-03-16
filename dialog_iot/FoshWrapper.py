@@ -1,3 +1,11 @@
+"""
+FoshWrapper
+======================================
+.. moduleauthor:: Michal Sladecek <misisnik@gmail.com>
+.. autoclass:: FoshWrapper
+   :members:
+
+"""
 import logging
 import pygatt
 from pygatt.exceptions import NotConnectedError, BLEError, NotificationTimeout
@@ -44,7 +52,7 @@ _config_structure = [ 'sensor_combination'
                     , 'calibration_mode'
                     , 'auto_calibration_mode' ]
 
-class FoshWrapepr(object):
+class FoshWrapper(object):
     """
         Fosh Iot is easy wraper for Dialog semiconductor IoT development kit
         More info about it you could find in Readme.md and IoT datasheet

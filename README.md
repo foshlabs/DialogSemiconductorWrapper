@@ -3,6 +3,9 @@ Fosh Wrapper is dedicated for easy work with bluetooth module from DialogSemicon
 Module has been tested on Ubuntu 16.04 width Python 3.
 FoshWrapper also using another Python librari which pygatt (https://github.com/peplin/pygatt)
 
+IoT datasheet 
+https://support.dialog-semiconductor.com/system/files/restricted/UM-B-063_DA14583_IoT_Sensor_Development_Kit_1v3.pdf
+
 * How to install it
 - install pygatt library
 
