@@ -67,6 +67,7 @@ Basic usege is indicate in example directory. Or here
 from dialog_iot import FoshWrapper
 
 fosh = FoshWrapper()
+#fosh = FoshWrapper(True) #for console logging
 
 #find devices and print it
 devices = fosh.find(connect = False)
