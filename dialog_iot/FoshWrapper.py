@@ -44,7 +44,7 @@ _config_structure = [ 'sensor_combination'
                     , 'accelerometer_range'
                     , 'accelerometer_rate'
                     , 'gyroscope_range'
-                    , 'gyroxcope_rate'
+                    , 'gyroscope_rate'
                     , 'magnetometer_rate'
                     , 'enviromental_rate'
                     , 'sensor_fusion_rate'
@@ -73,7 +73,7 @@ class FoshWrapper(object):
                         , 'accelerometer_range'   : 0x0C
                         , 'accelerometer_rate'    : 0x08
                         , 'gyroscope_range'       : 0x03
-                        , 'gyroxcope_rate'        : 0x08
+                        , 'gyroscope_rate'        : 0x08
                         , 'magnetometer_rate'     : 0x00
                         , 'enviromental_rate'     : 1
                         , 'sensor_fusion_rate'    : 25
@@ -150,24 +150,25 @@ class FoshWrapper(object):
             self.subscribed_uuids.remove(uuid)
             del self.subscribed_callbacks[uuid]
 
-    def read(self, uuid = ''):
+    def read(self, uuid_name = ''):
         """
             Read from uuid
         """
+        uuid = _uuids[uuid_name]
         self.device.char_read(uuid)
 
-    def write(self, uuid = '', data = []):
+    def _write(self, uuid = '', data = []):
         """
             write into connected device with uuid
             data should be array od commands
         """
         if uuid == _uuids['controlPoint'] and _uuids['commandReply']\
         not in self.subscribed_uuids:
-            self.subscribeCommands()
+            self._subscribeCommands()
         self.device.char_write(uuid, bytearray(data), True)
 
     #configuration
-    def subscribeCommands(self):
+    def _subscribeCommands(self):
         """
             this intern function subscribe commands reply char
         """
@@ -186,7 +187,7 @@ class FoshWrapper(object):
         data = [cmd] + data
         if response:
             self.reply_buf = {}
-        self.write(_uuids['controlPoint'], data)
+        self._write(_uuids['controlPoint'], data)
 
         if response:
             while self.reply_buf == {}:
