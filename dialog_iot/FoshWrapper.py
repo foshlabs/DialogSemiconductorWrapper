@@ -69,7 +69,7 @@ class FoshWrapper(object):
         self.adapter.start()
 
         self.reply_buf = {}
-        self._config = {  'sensor_combination'    : 7
+        self.config = {  'sensor_combination'    : 7
                         , 'accelerometer_range'   : 0x0C
                         , 'accelerometer_rate'    : 0x08
                         , 'gyroscope_range'       : 0x03
@@ -95,9 +95,9 @@ class FoshWrapper(object):
     def find(self, connect = False, timeout = 10, device_name = 'IoT'):
         """
             Function find() could scan all bluetooth devices.
-            If parameter connect is True and any iot device exists, there is 
-            called function for connect this device. If there are more than one
-            iot devices, program fill connect to first one.
+            If parameter connect is True and any iot device exists, it will be
+            called function for connect to this device. If there are more than
+            one, program will connect to the first one.
             Parameter timeout define time for searching ble devices.
             It resurns array of devices if any exists or just True/False if 
             user want to connect to those. Parameter device_name is scring which
@@ -202,7 +202,7 @@ class FoshWrapper(object):
             write to flash 
         """
         def getConfigData():
-            return [self._config[n] for n in _config_structure]
+            return [self.config[n] for n in _config_structure]
 
         if self.run or self.run is None:
             self.run = False
@@ -219,8 +219,8 @@ class FoshWrapper(object):
         """
         data = self.cmd('get_configuration')
         for i, b in enumerate(_config_structure):
-            self._config[b] =  data['data'][i]
-        return self._config
+            self.config[b] =  data['data'][i]
+        return self.config
 
     def start(self):
         """
