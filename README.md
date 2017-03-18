@@ -9,11 +9,12 @@ Wrappers features:
   - Simple calibration
   - Examples
  
-[Requirementss](#requirements)
-[Bluez installation](#bluez-installation)
-[FoshWrapper installation](#foshWrapper-installation)
-[Usage](#usage)
-[Functions](#functions)
+Sections:
+- [Requirementss](#requirements)
+- [Bluez installation](#bluez-installation)
+- [FoshWrapper instalation](#foshwrapper-installation)
+- [Usage](#usage)
+- [Functions](#functions)
 
 ## Requirements
 - python 2.7 or greater (tested on v.3.5)
@@ -80,16 +81,17 @@ except Exception as e:
 after that you could deal with easy Fosh functions
 
 ## Functions
-#### - find(connect = False, timeout = 10, device_name = 'IoT')
+####  find(connect = False, timeout = 10, device_name = 'IoT')
 - this function returns array of all ble device
 - if u set connect to True, wrapper automatically connect into first device with name IoT
-#### - connect(address = '')
+####  connect(address = '')
 - just connect into specific device with declared mac address
-#### - subscribe(uuid_name = '', callback = None)
-#### - unsubscribe(uuid_name = '')
+####  subscribe(uuid_name = '', callback = None)
+####  unsubscribe(uuid_name = '')
 These functions just subscribe/unsubscribe predefined characteristics. For each response from this subscribe will be automatically called function "callback"
-#### - read(uuiod_name = '')
+####  read(uuiod_name = '')
 Table of uuid_names:
+
 | uuid_name | description |
 | ------ | ------ |
 | accelerometer | data from accelerometer |
@@ -97,11 +99,12 @@ Table of uuid_names:
 | magnetometer | data from magnetometer |
 | sensorFusion | data from sensorFusion |
 | deviceFeatures | data from hunidity and temperature sensor |
-#### -  getConfig()
+####   getConfig()
 return configuration from device and also store it in the .config variable
-#### - setConfig(flash = True)
+####  setConfig(flash = True)
 set device configuration which is in the .config variable like dictionary 
 AFTER EACH SETCONFIG IS NEEDED TO SEND START COMMAND
+
 | config[name] | options (more in 6.1.3.9 datasheets chapter) |
 | ------ | ------ |
 |sensor_combination|2: Gyro / 3: Accel + Gyro / 5: Accel + Mag / 7: Accel + Gyro + Mag|
@@ -116,15 +119,16 @@ AFTER EACH SETCONFIG IS NEEDED TO SEND START COMMAND
 |calibration_mode|0: None / 1: Static / 2: Continuous / 3: One Shot|
 |auto_calibration_mode|0: Basic / 1: SmartFusion|
 
-#### -  start()
-#### - stop()
-#### - reset()
-#### -  accelerometerCalibration()
+####  start()
+####  stop()
+####  reset()
+####  accelerometerCalibration()
 There are some predefined commands function
 Finally you could create command request someselve by function
-#### -  cmd(cmd, data = [])
+####  cmd(cmd, data = [])
 cmd is command name from table which is describe in downpage
 data is array input of hex or dec data whatewer
+
 | cmd | description |
 | ------ | ------ |
 |stop|There is some response|
