@@ -1,5 +1,5 @@
 # FoshWrapper for Dialog DA14583 IoT module
-Fosh Wrapper is dedicated for easy work with DialogSemiconductor bluetooth module. 
+Fosh Wrapper is dedicated for easy work with DialogSemiconductor IoT bluetooth module. 
 Wraper is tested on Ubuntu 16.04 and Python 3.
 
 Wrappers features:
@@ -21,11 +21,11 @@ Sections:
 - BlueZ 5.18 or greater with gattool
 - pygatt library
 ## Bluez installation
-Fosh wrapper is based on bluez module which is official bluetooth distribution in ubuntu linux
+Fosh wrapper is based on bluez module which is official bluetooth distribution for ubuntu linux
 ```sh
 sudo apt-get install bluez
 ```
-For correctly function is needs bluez>=5 so if you dont have this wersion install the newest. For example in Ubuntu 16.4 you needs to upgrade it because bluez version higher than 5 is compose from Ubuntu 16.10.
+For correct function is needed bluez>=5, so if you don't have this version install the latest. For example in Ubuntu 16.4 you have to upgrade it because bluez version higher than 5 has been composed since Ubuntu 16.10.
 ```sh
 sudo apt-get update
 sudo apt-get install -y libusb-dev libdbus-1-dev libglib2.0-dev libudev-dev libical-dev libreadline-dev
@@ -42,11 +42,11 @@ cd bluez-5.44
 make
 sudo make install
 ```
-Finally you have to edit configuration of bluez to the expperimental use (because BLE)
+Finally you have to edit bluez service configuration to the expperimental use (because BLE)
 ```sh
 sudo vim /lib/systemd/system/bluetooth.service
 ```
-and eddit line which starts with "ExecStart......" to this format:
+and eddit line which starts with "ExecStart......" into this format:
 ```sh
 ExecStart=/usr/local/libexec/bluetooth/bluetoothd --experimental
 ```
@@ -79,14 +79,14 @@ try:
 except Exception as e:
     print(e) #error time :D
 ```
-after that you could deal with easy Fosh functions
+after that you could deal with easy Fosh functions which is consider down...
 
 ## Functions
 ####  find(connect = False, timeout = 10, device_name = 'IoT')
-- this function returns array of all ble device
-- if u set connect to True, wrapper automatically connect into first device with name IoT
+- this function return array of all founded ble device
+- if u set variable connect to the True, wrapper automatically connect into the first device with name IoT (or into the your defined device_name)
 ####  connect(address = '')
-- just connect into specific device with declared mac address
+- just connect into specific device with mac address declared
 ####  subscribe(uuid_name = '', callback = None)
 ####  unsubscribe(uuid_name = '')
 These functions just subscribe/unsubscribe predefined characteristics. For each response from this subscribe will be automatically called function "callback"
@@ -125,9 +125,11 @@ AFTER EACH SETCONFIG IS NEEDED TO SEND START COMMAND
 ####  reset()
 ####  accelerometerCalibration()
 There are some predefined commands function
-Finally you could create command request someselve by function
+
+
+Finally you could create command request by someselve with cmd function
 ####  cmd(cmd, data = [])
-cmd is command name from table which is describe in downpage
+cmd is command name from table which been described its function
 data is array input of hex or dec data whatewer
 
 | cmd | description |
