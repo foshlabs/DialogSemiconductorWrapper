@@ -1,12 +1,12 @@
-# FoshWrapper for Dialog DA14583 IoT module
-Fosh Wrapper is dedicated for easy work with DialogSemiconductor IoT bluetooth module. 
-Wraper is tested on Ubuntu 16.04 and Python 3.
+# Wrapper for Dialog DA14583 IoT module
+Wrapper for DialogSemiconductor IoT bluetooth module. 
+Tested on Ubuntu 16.04, Python 3.
 
-Wrappers features:
-  - Subscribes all characteristics
-  - Change configuration things
+Features:
+  - Subscribe module characteristics
+  - Configuration
   - Read/Write
-  - Simple calibration
+  - Calibration
   - Examples
  
 Sections:
@@ -17,52 +17,35 @@ Sections:
 - [Functions](#functions)
 
 ## Requirements
-- python 2.7 or greater (tested on v.3.5)
+- Python 2.7 or greater (tested on v.3.5)
 - BlueZ 5.18 or greater with gattool
-- pygatt library
-## Bluez installation
-Fosh wrapper is based on bluez module which is official bluetooth distribution for ubuntu linux
+- PyGTK library
+## BlueZ installation
+FoshWrapper is based on BlueZ. BlueZ is the official Linux Bluetooth protocol stack. For correct behaviour, install BlueZ v5.0 and later:
 ```sh
 sudo apt-get install bluez
 ```
-For correct function is needed bluez>=5, so if you don't have this version install the latest. For example in Ubuntu 16.4 you have to upgrade it because bluez version higher than 5 has been composed since Ubuntu 16.10.
-```sh
-sudo apt-get update
-sudo apt-get install -y libusb-dev libdbus-1-dev libglib2.0-dev libudev-dev libical-dev libreadline-dev
-wget http://www.kernel.org/pub/linux/bluetooth/bluez-5.44.tar.xz
-tar xvf bluez-5.44.tar.xz
-cd bluez-5.44
-./configure --prefix=/usr           \
-            --mandir=/usr/share/man \
-            --sysconfdir=/etc       \
-            --localstatedir=/var    \
-            --enable-library        \
-            --disable-systemd       \
-            --disable-android       
-make
-sudo make install
-```
-Finally you have to edit bluez service configuration to the expperimental use (because BLE)
+Change BlueZ service configuration for the experimental use (because of Bluetooth Low Energy):
 ```sh
 sudo vim /lib/systemd/system/bluetooth.service
 ```
-and eddit line which starts with "ExecStart......" into this format:
+Edit the line starting with "ExecStart......" so it looks like this:
 ```sh
 ExecStart=/usr/local/libexec/bluetooth/bluetoothd --experimental
 ```
-finally just restart the bluetooth service
+Restart the Bluetooth service:
 ```sh
 systemctl restart bluetooth
 ```
 ## FoshWrapper installation
-Fosh wrapper using pygatt (https://github.com/peplin/pygatt) module which is main dependence. This module should be installed automatically with FoshWrapper installation:
+FoshWrapper's main dependency is PyGTK (https://github.com/peplin/pygatt). However, it will be installed automatically along with FoshWrapper installation:
 ```sh
-git clone https://github.com/misisnik/FoshWrapper
+git clone git@github.com:foshlabs/FoshWrapper.git
 cd FoshWrapper
 python3 setup.py install
 ```
-## Usage
-Basic usege is indicate in example directory. Or here
+## Example
+Basic usage is shown bellow (also in the example directory):
 ```python3
 from dialog_iot import FoshWrapper
 
@@ -79,7 +62,7 @@ try:
 except Exception as e:
     print(e) #error time :D
 ```
-after that you could deal with easy Fosh functions which is consider down...
+After that you can use any of Fosh functions doccumentated bellow:
 
 ## Functions
 ####  find(connect = False, timeout = 10, device_name = 'IoT')
