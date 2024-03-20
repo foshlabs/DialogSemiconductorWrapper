@@ -1,5 +1,5 @@
 # Wrapper for Dialog DA14583 IoT module
-Wrapper for DialogSemiconductor IoT bluetooth module. 
+Wrapper for Dialog Semiconductor IoT bluetooth module. 
 Tested on Ubuntu 16.04, Python 3.
 
 Features:
