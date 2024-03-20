@@ -26,15 +26,54 @@ Wrapper for the Dialog Semiconductor IoT Bluetooth module. Tested on Ubuntu 16.0
 
 ## BlueZ Installation
 
-FoshWrapper is based on BlueZ, the official Linux Bluetooth protocol stack. Install BlueZ v5.0 or later for correct behavior.
+FoshWrapper is based on BlueZ. BlueZ is the official Linux Bluetooth protocol stack. For correct behavior, install BlueZ v5.0 or later:
+```
+sudo apt-get install bluez
+```
+
+Change the BlueZ service configuration for experimental use (because of Bluetooth Low Energy):
+```
+sudo vim /lib/systemd/system/bluetooth.service
+```
+
+Edit the line starting with "ExecStart" so it looks like this:
+```
+ExecStart=/usr/local/libexec/bluetooth/bluetoothd --experimental
+```
+
+Restart the Bluetooth service:
+```
+sudo systemctl restart bluetooth
+```
 
 ## FoshWrapper Installation
 
-FoshWrapper's main dependency is PyGTK, which will be installed automatically with FoshWrapper.
+FoshWrapper's main dependency is PyGTK (https://github.com/peplin/pygatt). However, it will be installed automatically along with FoshWrapper:
+```
+git clone git@github.com:foshlabs/FoshWrapper.git
+cd FoshWrapper
+python3 setup.py install
+```
 
 ## Usage
 
-Basic usage is shown below, demonstrating device discovery and connection.
+Basic usage is shown below (also in the example directory):
+```
+from dialog_iot import FoshWrapper
+
+fosh = FoshWrapper()
+# fosh = FoshWrapper(True) # For console logging
+
+# Find devices and print them
+devices = fosh.find(connect=False)
+print(devices)
+
+# Connect to a specific MAC address
+try:
+    fosh.connect('80:EA:CA:00:D2:28')
+except Exception as e:
+    print(e)  # Error handling
+```
 
 ## Functions
 
